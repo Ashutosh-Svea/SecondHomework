@@ -5,11 +5,13 @@ namespace SecondHomework
 {
     class Program
     {
+
+     //Function for choice 1 to calculate ticket price for movie.
         static void executeFirst()
         {
             int count;
-            //Console.WriteLine("Case 1");
             Console.WriteLine("Hur många vi ar som ska gå på bio?");
+            //check if valid integer for number of people
             if (!int.TryParse(Console.ReadLine(), out count))
             {
                 Console.WriteLine("Invalid number of people entered. Try again.");
@@ -17,6 +19,10 @@ namespace SecondHomework
             else
             {
                 int totalCost = 0;
+                
+                //for each person in the party, find the age and calculate ticket cost and add to total.
+                //since only total cost and total number of people are needed, not creating whole class structure yet. Refactor later...
+
                 for (int i = 0; i < count; i++)
                 {
                     Console.WriteLine($"Enter the age of person {i + 1} - ");
@@ -31,6 +37,7 @@ namespace SecondHomework
 
         }
 
+        //second choice to repeat 10 times
         static void executeSecond()
         {
             Console.WriteLine("Please enter some text");
@@ -45,6 +52,8 @@ namespace SecondHomework
                     Console.WriteLine("");
             }
         }
+
+        //third choice to find the thrid word in a sentence
         static void executeThird()
         {
             Console.WriteLine("Enter a sentence with atleast three words.");
@@ -55,26 +64,27 @@ namespace SecondHomework
                 Console.WriteLine("Invalid input.");
                 return;
             }
-            List<string> words = new List<string>();
 
-            string[] wordArray = sentence.Split(' '); //split based on space
+            List<string> words = new List<string>(); //to store individual words of sentence
+
+            string[] wordArray = sentence.Split(' '); //split sentence based on space
+
+            //for each word, remove whitespaces in front and end of each word
             for (int i = 0; i < wordArray.Length; i++)
             {
-
                 string word = wordArray[i].Trim(); //remove leading and trailing whitespaces
-                if (!(word == null || word.Equals(String.Empty))) //skip multiple whitespace and empty strings as words. 
+                if (!(word == null || word.Equals(String.Empty))) //skip empty strings as words. 
                 {
-                    words.Add(word); //add trimed and valid words in list
+                    words.Add(word); //add trimmed and valid words in list
                 }
-
             }
             //Again check for atleast three words after trimming whitespaces.
             if (words.Count < 3)
                 Console.WriteLine("Invalid sentence. Must contains atleast three words.");
             else
                 Console.WriteLine($"Third word is {words[2]}");
-
         }
+
         static int getAge()
         {
             int age;
@@ -83,6 +93,7 @@ namespace SecondHomework
             {
                 Console.WriteLine("Pleae enter a valid age");
             }
+
             return age;
         }
 
@@ -124,10 +135,12 @@ namespace SecondHomework
             do
             {
                 Console.WriteLine("Enter 0 for Exiting program...");
-                Console.WriteLine("Enter 1 for cinema ticket price");
-                Console.WriteLine("Enter 2 for Repeat string 10 times");
+                Console.WriteLine("Enter 1 for Cinema Ticket Price");
+                Console.WriteLine("Enter 2 for Repeat text 10 times");
                 Console.WriteLine("Enter 3 for printing third word in a sentence");
+
                 int choice;
+                
                 if (!int.TryParse(Console.ReadLine(), out choice))
                 {
                     Console.WriteLine("Pleae enter a valid choice");
@@ -141,14 +154,13 @@ namespace SecondHomework
                             Environment.Exit(0);
                             break;
                         case 1:
-                            executeFirst(); 
+                            executeFirst(); //Cinema Ticket price calculator 
                             break;
                         case 2:
-                            //Console.WriteLine("Case 2");
-                            executeSecond();
+                            executeSecond(); //text repeater 10 times
                             break;
                         case 3:
-                            executeThird();
+                            executeThird(); //find third word in a sentence
                             break;
                         default:
                             Console.WriteLine("Please enter a valid choice");
